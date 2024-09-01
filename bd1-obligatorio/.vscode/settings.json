@@ -1,0 +1,5 @@
+{
+    "database-client.splitSQLByNewLine": false,
+    "database-client.autoPagingSQL": false,
+    "editor.formatOnSave": false
+}

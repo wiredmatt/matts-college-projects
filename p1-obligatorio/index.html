@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="estilos/estilos.css" />
+    <title>Obligatorio P1 2023 - wiredmatt, Leandro Guzmán</title>
+  </head>
+
+  <body>
+    <div id="contenedor">
+      <div id="cabezal" class="clearfix" style="display: none">
+        <img
+          id="logo"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Commons-logo.svg/1524px-Commons-logo.svg.png"
+          alt="logo"
+        />
+        <ul id="navPrincipal">
+          <!-- ADMIN NAV -->
+          <li>
+            <a id="aGestionarInstancias" class="nav-item-admin"
+              >Gestionar Instancias</a
+            >
+          </li>
+          <li>
+            <a id="aListadoUsuarios" class="nav-item-admin"
+              >Gestionar usuarios</a
+            >
+          </li>
+          <li>
+            <a id="aReportes" class="nav-item-admin">Reportes</a>
+          </li>
+          <!-- FIN ADMIN NAV -->
+
+          <!-- USER NAV -->
+          <li>
+            <a id="aMisInstancias" class="nav-item-usuario"
+              >Gestionar Instancias</a
+            >
+          </li>
+          <li>
+            <a id="aMisCostos" class="nav-item-usuario">Ver Costos</a>
+          </li>
+          <li>
+            <a id="aAlquilar" class="nav-item-usuario">Alquilar Instancias</a>
+          </li>
+          <!-- FIN USER NAV -->
+
+          <!-- COMPARTIDO -->
+          <li>
+            <a id="aCerrarSesion">Cerrar Sesión</a>
+          </li>
+        </ul>
+      </div>
+      <div id="contenido">
+        <div id="divLogin">
+          <h1>Inicio de sesion</h1>
+          <label for="txtNomUsu">Ingrese nombre de usuario</label>
+          <input type="text" id="txtNomUsu" />
+          <label for="txtPassword">Ingrese contrasena</label>
+          <input type="password" id="txtPassword" />
+          <input type="button" id="btnIniciarSesion" value="Iniciar Sesion" />
+          <input type="button" id="btnRegistrarse" value="Registrarse" />
+
+          <p id="pMensajesLogin"></p>
+        </div>
+
+        <div id="divRegistroUsuario" style="display: none">
+          <h1>Registrarse</h1>
+          <label for="txtNombreUsuarioRegistro">Nombre</label>
+          <input type="text" id="txtNombreUsuarioRegistro" />
+          <label for="txtApellidoRegistro">Apellido</label>
+          <input type="text" id="txtApellidoRegistro" />
+          <label for="txtNomUsuRegistro">Nombre usuario</label>
+          <input type="text" id="txtNomUsuRegistro" />
+          <label for="txtContrasenaRegistro">Contraseña</label>
+          <input type="text" id="txtContrasenaRegistro" />
+          <label for="txtTarjeta">Tarjeta de credito</label>
+          <input type="text" id="txtTarjeta" />
+          <label for="txtCvcTarjeta">Codigo CVC Tarjeta</label>
+          <input type="text" id="txtCvcTarjeta" />
+          <input type="button" id="btnCrearUsuario" value="Crear usuario" />
+          <input type="button" id="btnVolverLogin" value="Volver al login" />
+          <p id="pInfoRegistroUsuario"></p>
+        </div>
+
+        <div id="divContenidoAdministrador" style="display: none">
+          <div id="divAdminStockInstancias"></div>
+          <div id="divAdminAdministrarUsuario"></div>
+          <div id="divAdminReportes"></div>
+        </div>
+        <div id="divContenidoUsuario" style="display: none">
+          <div id="divUsuarioMisInstancias"></div>
+          <div id="divUsuarioMisCostos"></div>
+          <div id="divUsuarioAlquilar">
+            <h2>Alquilar Instancias</h2>
+            <label for="slcOpcionesAlquiler" style="margin-left: 2px"
+              >Categoría</label
+            >
+            <select
+              id="slcOpcionesAlquiler"
+              style="width: 100%; margin-top: 4px"
+            >
+              <option value="Optimizadas para computo">
+                Optimizadas para Cómputo
+              </option>
+              <option value="Optimizadas para memoria">
+                Optimizadas para Memoria
+              </option>
+              <option value="Optimizadas para almacenamiento">
+                Optimizadas para Almacenamiento
+              </option>
+            </select>
+
+            <div id="divUsuarioAlquilarContenedorTabla"></div>
+          </div>
+        </div>
+      </div>
+      <div id="footer">
+        <a href="https://www.youtube.com/watch?v=-HB5XU18IsU">Footer</a>
+      </div>
+    </div>
+
+    <script src="codigo/libreria.js"></script>
+    <script src="codigo/clases.js"></script>
+    <script src="codigo/sistema.js"></script>
+    <script src="codigo/ui.js"></script>
+  </body>
+</html>

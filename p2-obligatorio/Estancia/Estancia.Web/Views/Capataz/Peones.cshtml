@@ -1,0 +1,49 @@
+@using Estancia.Dominio
+
+@{
+    ViewData["Title"] = "Peones";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Peones</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Mail</th>
+                <th scope="col">Ingreso</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Peon p in ViewBag.Peones)
+            {
+                <tr>
+                    <th scope="row">
+                        #@p.ID
+                    </th>
+                    <td>
+                        @p.Nombre
+                    </td>
+                    <td>
+                        @p.Mail
+                    </td>
+                    <td>
+                        @p.FechaIngreso.ToShortDateString()
+                    </td>
+                    <td>
+                        @Html.ActionLink("Ver Tareas", "TareasDePeon", "Capataz", new { id = p.ID }, new
+                            {
+                                @class = "btn btn-primary"
+                            })
+                        @Html.ActionLink("Asignar Tarea", "AsignarTareaAPeon", "Capataz", new { id = p.ID }, new
+                            {
+                                @class = "btn btn-info"
+                            })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,49 @@
+@using Estancia.Dominio
+
+@{
+    ViewData["Title"] = "Tareas Pendientes de" + (@ViewBag.NombrePeon);
+}
+
+<div class="text-center">
+    <h1 class="display-4">Tareas Pendientes de @ViewBag.NombrePeon</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Fecha Inicio</th>
+                <th scope="col">Fecha Limite</th>
+                <th scope="col">Capataz</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Tarea t in ViewBag.TareasPendientes)
+            {
+                <tr>
+                    <th scope="row">
+                        #@t.ID
+                    </th>
+                    <td>
+                        @t.Descripcion
+                    </td>
+                    <td>
+                        @t.FechaInicio.ToShortDateString()
+                    </td>
+                    <td>
+                        @t.FechaLimite.ToShortDateString()
+                    </td>
+                    <td>
+                        @t.Capataz.Nombre (#@t.Capataz.ID)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Completar", "CompletarTarea", "Peon", new { id = t.ID }, new
+                            {
+                                @class = "btn btn-primary"
+                            })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

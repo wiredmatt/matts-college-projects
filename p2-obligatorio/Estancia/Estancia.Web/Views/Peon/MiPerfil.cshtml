@@ -1,0 +1,37 @@
+@using Estancia.Dominio
+
+@{
+    ViewData["Title"] = "Perfil de" + (@ViewBag.Peon).Nombre;
+}
+
+<div>
+    <h1 class="display-4 text-center">Perfil de @ViewBag.Peon.Nombre</h1>
+
+    <div class="card border border-secondary p-3 rounded-2 w-25 mx-auto d-block">
+        <div class="card-body">
+            <h5 class="card-title">Nombre: @ViewBag.Peon.Nombre</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">ID: #@ViewBag.Peon.ID</li>
+            <li class="list-group-item">Mail: @ViewBag.Peon.Mail</li>
+            <li class="list-group-item">Fecha De Ingreso: @ViewBag.Peon.FechaIngreso.ToShortDateString()</li>
+            <li class="list-group-item">Residente: @{
+                    if (ViewBag.Peon.EsResidente)
+                    {
+                        <span>Si</span>
+                    }
+                    else
+                    {
+                        <span>No</span>
+                    }
+                }
+            </li>
+        </ul>
+        <div class="card-body">
+            @Html.ActionLink("Ver Mis Tareas", "MisTareas", "Peon", null, new
+                {
+                    @class = "btn btn-primary"
+                })
+        </div>
+    </div>
+</div>
