@@ -1,0 +1,42 @@
+{
+  "info": {
+    "name": "321268Obligatorio",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "bruno",
+      "event": []
+    },
+    {
+      "name": "EventosDeAtleta",
+      "event": [],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "auth": null,
+        "description": "",
+        "url": {
+          "raw": "http://localhost:5104/Atleta/Eventos/:id",
+          "protocol": "http",
+          "host": [
+            "localhost:5104"
+          ],
+          "path": [
+            "Atleta",
+            "Eventos",
+            ":id"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "key": "id",
+              "value": "5"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "variable": []
+}

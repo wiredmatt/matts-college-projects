@@ -1,0 +1,56 @@
+@model LibreriaWeb.Models.Eventos.ViewModelEventoListado?
+
+@{
+    ViewData["Title"] = "Participantes del Evento " + Model?.Nombre;
+}
+
+@if (Model == null)
+{
+    <h1>Evento no encontrado</h1>
+}
+else
+{
+    <h1>Participantes del Evento @Model.Nombre (#@Model.Id)</h1>
+
+    <table class="table">
+    <thead>
+        <tr>
+            <th>
+                Pais
+            </th>
+            <th>
+                Id
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Apellido
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model!.Atletas)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pais.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Apellido)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Puntuar", "Puntuar", new { idAtleta = item.Id, idEvento = Model.Id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -1,0 +1,132 @@
+@using LibreriaWeb.Models.Disciplinas;
+@using LibreriaWeb.Models.Atletas;
+@model LibreriaWeb.Models.Eventos.ViewModelEventoAlta
+
+@{
+    ViewData["Title"] = "Create";
+    IEnumerable<ViewModelDisciplinaListado> DisciplinaListado = ViewBag.DisciplinaListado;
+    IEnumerable<ViewModelAtletaListado> AtletaListado = ViewBag.AtletaListado;
+}
+
+<h1>Create</h1>
+
+<h4>ViewModelEventoAlta</h4>
+<hr />
+@if (ViewBag.Mensaje != null)
+{
+    <div class="alert alert-danger" role="alert">
+    @ViewBag.Mensaje
+</div>
+}
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdDisciplina" class="control-label"></label>
+                <select asp-for="IdDisciplina" asp-items="@(new SelectList(DisciplinaListado, "Id", "Nombre"))"
+                    class="form-control"></select>
+                <span asp-validation-for="IdDisciplina" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div>
+                    <label asp-for="IdsAtletas" class="control-label"></label>
+                    <small class="text-muted">Minimo de 3.</small>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Seleccionar Atletas
+                    </button>
+                    <div class="dropdown-menu border border-primary border-2" aria-labelledby="dropdownMenuButton">
+                        @foreach (var atleta in AtletaListado)
+                        {
+                            <div class="dropdown-item atleta-item">
+                                <label for="atleta-checkbox">@atleta.Pais.Nombre - @atleta.Nombre @atleta.Apellido
+                                    <strong>(#@atleta.Id)</strong></label>
+                                @if (Model?.IdsAtletas?.Contains(atleta.Id) == true)
+                                {
+                                    <input type="checkbox" class="atleta-checkbox" value="@atleta.Id" checked />
+                                }
+                                else
+                                {
+                                    <input type="checkbox" class="atleta-checkbox" value="@atleta.Id" />
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+                <select asp-for="IdsAtletas" class="form-control d-none" multiple></select>
+                <span asp-validation-for="IdsAtletas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaInicio" class="control-label"></label>
+                <input asp-for="FechaInicio" class="form-control" type="date" />
+                <span asp-validation-for="FechaInicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaFin" class="control-label"></label>
+                <input asp-for="FechaFin" class="form-control" type="date" />
+                <span asp-validation-for="FechaFin" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-4">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+<script>
+    $(document).ready(function () {
+        // Toggle dropdown menu on button click
+        $('#dropdownMenuButton').click(function () {
+            $('.dropdown-menu').toggle();
+        });
+
+        // Handle checkbox changes
+        function updateSelectedAtletas() {
+            var selectedValues = [];
+            $('.atleta-checkbox:checked').each(function () {
+                selectedValues.push($(this).val());
+            });
+            $('#IdsAtletas').empty();
+            selectedValues.forEach(function (value) {
+                $('#IdsAtletas').append('<option value="' + value + '" selected>' + value + '</option>');
+            });
+        }
+
+        $('.atleta-checkbox').change(function () {
+            updateSelectedAtletas();
+        });
+
+        // Toggle checkbox when clicking on parent div
+        $('.dropdown-item').click(function (event) {
+            var checkbox = $(this).find('.atleta-checkbox');
+            checkbox.prop('checked', !checkbox.prop('checked')).change();
+            event.stopPropagation(); // Prevent the dropdown from closing
+        });
+
+        // Prevent event propagation when clicking on the checkbox itself
+        $('.atleta-checkbox').click(function (event) {
+            event.stopPropagation();
+        });
+
+        updateSelectedAtletas(); // in case of pre-selected values.
+    });
+</script>
+}

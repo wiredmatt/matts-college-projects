@@ -1,0 +1,48 @@
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: db-sql_server
+    restart: always
+    user: root
+    env_file:
+      - sqlserver.env
+      - sapassword.env
+    ports:
+      - "1433:1433"
+  sqlpad:
+    image: sqlpad/sqlpad:latest
+    hostname: "sqlpad"
+    ports:
+      - "4567:3000"
+    environment:
+      SQLPAD_ADMIN: "admin@admin.com"
+      SQLPAD_ADMIN_PASSWORD: "admin"
+      SQLPAD_APP_LOG_LEVEL: info
+      SQLPAD_WEB_LOG_LEVEL: warn
+      SQLPAD_CONNECTIONS__sqlserverdemo__name: CatHotel
+      SQLPAD_CONNECTIONS__sqlserverdemo__driver: sqlserver
+      SQLPAD_CONNECTIONS__sqlserverdemo__host: 172.17.0.1
+      SQLPAD_CONNECTIONS__sqlserverdemo__port: 1433
+      SQLPAD_CONNECTIONS__sqlserverdemo__database: CatHotel
+      SQLPAD_CONNECTIONS__sqlserverdemo__username: sa
+      SQLPAD_CONNECTIONS__sqlserverdemo__password: Password12345
+      SQLPAD_CONNECTIONS__sqlserverdemo__trustServerCertificate: true
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+      - 27017:27017
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+      ME_CONFIG_BASICAUTH: false

@@ -1,0 +1,15 @@
+meta {
+  name: EventosDeAtleta
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:5104/Atleta/Eventos/:id
+  body: none
+  auth: none
+}
+
+params:path {
+  id: 5
+}

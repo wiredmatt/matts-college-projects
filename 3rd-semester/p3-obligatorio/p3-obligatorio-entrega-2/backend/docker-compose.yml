@@ -1,0 +1,30 @@
+services:
+  mssql:
+    user: root
+    container_name: sql_server_obligatorio
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    restart: always
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Express"
+      MSSQL_SA_PASSWORD: "Password12345"
+    ports:
+      - 1433:1433
+  sqlpad:
+    image: sqlpad/sqlpad:latest
+    hostname: "sqlpad"
+    ports:
+      - "4567:3000"
+    environment:
+      SQLPAD_ADMIN: "admin@admin.com"
+      SQLPAD_ADMIN_PASSWORD: "admin"
+      SQLPAD_APP_LOG_LEVEL: info
+      SQLPAD_WEB_LOG_LEVEL: warn
+      SQLPAD_CONNECTIONS__sqlserverdemo__name: ObligatorioMC
+      SQLPAD_CONNECTIONS__sqlserverdemo__driver: sqlserver
+      SQLPAD_CONNECTIONS__sqlserverdemo__host: 172.17.0.1
+      SQLPAD_CONNECTIONS__sqlserverdemo__port: 1433
+      SQLPAD_CONNECTIONS__sqlserverdemo__database: ObligatorioMC
+      SQLPAD_CONNECTIONS__sqlserverdemo__username: sa
+      SQLPAD_CONNECTIONS__sqlserverdemo__password: Password12345
+      SQLPAD_CONNECTIONS__sqlserverdemo__trustServerCertificate: true

@@ -1,0 +1,46 @@
+{
+  "name": "321268Obligatorio",
+  "version": "1",
+  "items": [
+    {
+      "type": "http",
+      "name": "EventosDeAtleta",
+      "seq": 1,
+      "request": {
+        "url": "http://localhost:5104/Atleta/Eventos/:id",
+        "method": "GET",
+        "headers": [],
+        "params": [
+          {
+            "name": "id",
+            "value": "5",
+            "type": "path",
+            "enabled": true
+          }
+        ],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    }
+  ],
+  "environments": [],
+  "brunoConfig": {
+    "version": "1",
+    "name": "321268Obligatorio",
+    "type": "collection",
+    "ignore": [
+      "node_modules",
+      ".git"
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:WebApi.Controllers.AtletaController.Get(System.Int32)">
+            <summary>
+            Obtiene los atletas que practican una disciplina dada
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.AutenticacionController.Login(Compartido.DTOs.Usuarios.DTOUsuarioLogin)">
+            <summary>
+            Autentica a un usuario
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.DisciplinaController.Get">
+            <summary>
+            Permite obtener todas las Disciplinas
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.DisciplinaController.Get(System.Int32)">
+            <summary>
+            Permite obtener los datos de una Disciplina
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.DisciplinaController.Post(Compartido.DTOs.Disciplinas.DTODisciplinaAlta)">
+            <summary>
+            Permite crear una Disciplina
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.DisciplinaController.Patch(System.Int32,Compartido.DTOs.Disciplinas.DTODisciplinaEditar)">
+            <summary>
+            Permite modificar los datos de una Disciplina
+            </summary>
+            <param name="id"></param>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.DisciplinaController.Delete(System.Int32)">
+            <summary>
+            Permite eliminar una Disciplina
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.EventoController.Get(System.Nullable{System.Int32},System.String,System.String,System.String,System.Nullable{System.Double},System.Nullable{System.Double})">
+            <summary>
+            Permite obtener los Eventos segun los filtros proporcionados.
+            Si no se proporciona ningun filtro, se devuelven todos los eventos.
+            </summary>
+            <param name="idDisciplina"></param>
+            <param name="fechaInicio"></param>
+            <param name="fechaFin"></param>
+            <param name="nombreEvento"></param>
+            <param name="puntajeMinimo"></param>
+            <param name="puntajeMaximo"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

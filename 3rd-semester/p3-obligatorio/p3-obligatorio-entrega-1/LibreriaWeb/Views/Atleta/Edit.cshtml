@@ -1,0 +1,111 @@
+@using LogicaNegocio.Enums;
+@using LibreriaWeb.Models.Atletas;
+@using LibreriaWeb.Models.Disciplinas;
+@model ViewModelAtletaEditar;
+
+@{
+    ViewData["Title"] = "Edit";
+    IEnumerable<ViewModelDisciplinaListado> DisciplinaListado = ViewBag.DisciplinaListado;
+}
+
+<h1>Edit</h1>
+
+<h4>ViewModelAtletaEditar</h4>
+<hr />
+<div class="row">
+    @if (ViewBag.Mensaje != null)
+    {
+            <div class="alert alert-danger" role="alert">
+            @ViewBag.Mensaje
+            </div>
+    }
+
+    @if (ViewBag.Mensaje != "No existe un Atleta con ese Id")
+    {
+            <div class="container-fluid">
+                <form asp-action="Edit">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Id" class="control-label"></label>
+                                <input asp-for="Id" class="form-control" readonly disabled />
+                                <span asp-validation-for="Id" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Nombre" class="control-label"></label>
+                                <input asp-for="Nombre" class="form-control" readonly disabled />
+                                <span asp-validation-for="Nombre" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Apellido" class="control-label"></label>
+                                <input asp-for="Apellido" class="form-control" readonly disabled />
+                                <span asp-validation-for="Apellido" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Sexo" class="control-label"></label>
+                                <input asp-for="Sexo" class="form-control" readonly disabled />
+                                <span asp-validation-for="Sexo" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Pais.Nombre" class="control-label">Pais</label>
+                                <input asp-for="Pais.Nombre" class="form-control" readonly disabled />
+                                <span asp-validation-for="Pais.Nombre" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Disciplina
+                                        </th>
+                                        <th>
+                                            ¿Se especializa?
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach (var disciplina in DisciplinaListado)
+                                {
+                                            <tr>
+
+                                                <td>
+                                            @disciplina.Nombre
+                                                </td>
+                                                <td>
+                                                    <div class="form-group">
+                                                @if (Model.Disciplinas.Any((d) => d.Id == disciplina.Id))
+                                                {
+                                                                <input type="checkbox" name="selectedDisciplinas" value="@disciplina.Id" checked />
+                                                }
+                                                else
+                                                {
+                                                                <input type="checkbox" name="selectedDisciplinas" value="@disciplina.Id" />
+                                                }
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-group d-flex flex-row-reverse">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+    }
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
